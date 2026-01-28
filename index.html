@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Two Donuts & A Cup of Coffee | Artisan Pairings</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* --- CSS Variables & Reset --- */
+    :root {
+      --primary-brown: #4B3621;
+      --accent-brown: #6F4E37;
+      --warm-cream: #FDF5E6;
+      --soft-tan: #D2B48C;
+      --floral-pink: #E8B4B8;
+      --text-dark: #2C1E12;
+      --white: #ffffff;
+      --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--warm-cream);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary-brown);
+    }
+
+    /* IMPORTANT: prevents inline image gaps / weird layout in some browsers */
+    img { display: block; max-width: 100%; height: auto; }
+
+    /* --- Sticky Navigation --- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(253, 245, 230, 0.98);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--soft-tan);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--primary-brown);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    nav ul { display: flex; list-style: none; }
+    nav ul li { margin-left: 2rem; }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: var(--transition);
+    }
+
+    nav ul li a:hover { color: var(--accent-brown); }
+
+    /* --- Hero Section --- */
+    #hero {
+      height: 85vh;
+      background:
+        linear-gradient(rgba(75, 54, 33, 0.5), rgba(75, 54, 33, 0.5)),
+        url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: var(--white);
+      padding: 0 10%;
+    }
+
+    #hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      margin-bottom: 1rem;
+      color: var(--white);
+      text-shadow: 2px 2px 15px rgba(0,0,0,0.4);
+    }
+
+    #hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      font-weight: 300;
+    }
+
+    .cta-btn {
+      padding: 1.2rem 3rem;
+      background-color: var(--accent-brown);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .cta-btn:hover {
+      background-color: var(--white);
+      color: var(--primary-brown);
+      transform: translateY(-5px);
+    }
+
+    /* --- Common Section Styling --- */
+    section { padding: 6rem 10%; }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '✿';
+      display: block;
+      color: var(--floral-pink);
+      font-size: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    /* --- About Us Section --- */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      background: #fffaf5;
+    }
+
+    .about-content h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+
+    .about-image {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 20px 20px 0px var(--soft-tan);
+    }
+
+    /* --- Menu Preview --- */
+    #menu { background-color: var(--white); }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .menu-item {
+      background: var(--warm-cream);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    .menu-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(75, 54, 33, 0.15);
+    }
+
+    /* Ensures “always correct display”: fixed height + crop + neutral background */
+    .menu-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      background: #f2eadc;
+    }
+
+    .menu-info {
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .menu-info h3 { margin-bottom: 0.5rem; font-size: 1.4rem; }
+
+    /* --- Info & Map Section --- */
+    #contact-section {
+      background-color: var(--warm-cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      padding-bottom: 4rem;
+    }
+
+    .info-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .info-box {
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: 20px;
+      border: 1px solid var(--soft-tan);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .info-box::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 5px;
+      background: var(--accent-brown);
+    }
+
+    .map-container {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      min-height: 400px;
+    }
+
+    iframe { width: 100%; height: 100%; border: 0; }
+
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      padding: 3rem;
+      background: var(--primary-brown);
+      color: var(--white);
+    }
+
+    /* --- Responsive Design --- */
+    @media (max-width: 992px) {
+      #about, #contact-section { grid-template-columns: 1fr; text-align: center; }
+      .about-image { box-shadow: 10px 10px 0px var(--soft-tan); }
+    }
+
+    @media (max-width: 768px) {
+      header { flex-direction: column; padding: 1.5rem; }
+      nav ul { margin-top: 1.5rem; }
+      nav ul li { margin: 0 0.8rem; }
+      section { padding: 4rem 5%; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="#" class="logo">☕ 2 Donuts & A Cup</a>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#contact-section">Find Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <h1>Two Donuts and a Cup of Coffee</h1>
+    <p>A morning tradition, perfected. We pair the city's fluffiest artisan donuts with bold, ethically sourced coffee for the ultimate breakfast harmony.</p>
+    <a href="#menu" class="cta-btn">Explore the Pairings</a>
+  </section>
+
+  <section id="about">
+    <div class="about-content">
+      <h2>Our Story</h2>
+      <p>Founded by two friends with a simple philosophy: "Quality over quantity." We spent years finding the exact coffee bean roast that complements the buttery crumb of our signature donuts. Every morning, we wake up at 3:00 AM to ensure that when you walk through our doors, you smell the magic of fresh yeast and roasting arabica.</p>
+    </div>
+    <img
+      src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80"
+      alt="Coffee being poured into a cup"
+      class="about-image"
+      loading="lazy"
+      decoding="async"
+      referrerpolicy="no-referrer"
+    >
+  </section>
+
+  <section id="menu">
+    <h2 class="section-title">The Signature Menu</h2>
+
+    <div class="menu-grid">
+      <!-- Item 1: Velvet Latte -->
+      <div class="menu-item">
+        <img
+          src="https://images.unsplash.com/photo-1502462041640-b3d7e50d0662?auto=format&fit=crop&w=1200&q=80"
+          alt="Velvet latte with latte art"
+          class="menu-img"
+          loading="lazy"
+          decoding="async"
+          referrerpolicy="no-referrer"
+          width="1200"
+          height="800"
+        >
+        <div class="menu-info">
+          <h3>The Velvet Latte</h3>
+          <p>Double espresso with silky micro-foam and a hint of homemade cinnamon syrup.</p>
+        </div>
+      </div>
+
+      <!-- Item 2: Classic Duo -->
+      <div class="menu-item">
+        <img
+          src="https://images.unsplash.com/photo-1634834576474-c3500f65cbff?auto=format&fit=crop&w=1200&q=80"
+          alt="Glazed donuts paired with coffee"
+          class="menu-img"
+          loading="lazy"
+          decoding="async"
+          referrerpolicy="no-referrer"
+          width="1200"
+          height="800"
+        >
+        <div class="menu-info">
+          <h3>The Classic Duo</h3>
+          <p>Two vanilla-bean glazed donuts paired with our signature Midnight Brew dark roast.</p>
+        </div>
+      </div>
+
+      <!-- Item 3: Floral Strawberry -->
+      <div class="menu-item">
+        <img
+          src="https://images.unsplash.com/photo-1533910534207-90f31029a78e?auto=format&fit=crop&w=1200&q=80"
+          alt="Strawberry-glazed donuts on a pink background"
+          class="menu-img"
+          loading="lazy"
+          decoding="async"
+          referrerpolicy="no-referrer"
+          width="1200"
+          height="800"
+        >
+        <div class="menu-info">
+          <h3>Floral Strawberry</h3>
+          <p>Real strawberry glaze with dried rose petals. Pairs beautifully with iced white tea coffee.</p>
+        </div>
+      </div>
+
+      <!-- Item 4: Mocha Indulgence -->
+      <div class="menu-item">
+        <img
+          src="https://images.unsplash.com/photo-1533651441215-d01c13c8c4ad?auto=format&fit=crop&w=1200&q=80"
+          alt="Chocolate mocha in a glass mug"
+          class="menu-img"
+          loading="lazy"
+          decoding="async"
+          referrerpolicy="no-referrer"
+          width="1200"
+          height="800"
+        >
+        <div class="menu-info">
+          <h3>Mocha Indulgence</h3>
+          <p>Rich Belgian chocolate and espresso topped with a mini chocolate-sprinkle donut.</p>
+        </div>
+      </div>
+
+      <!-- Item 5: Iced Honey Latte (new image that shows iced coffee + drizzle) -->
+      <div class="menu-item">
+        <img
+          src="https://images.unsplash.com/photo-1621361344464-c7999d64f585?auto=format&fit=crop&w=1200&q=80"
+          alt="Iced latte in a jar with cream being poured in"
+          class="menu-img"
+          loading="lazy"
+          decoding="async"
+          referrerpolicy="no-referrer"
+          width="1200"
+          height="800"
+        >
+        <div class="menu-info">
+          <h3>Iced Honey Latte</h3>
+          <p>Chilled espresso, oat milk, and a soft honey drizzle — smooth, bright, and refreshing.</p>
+        </div>
+      </div>
+
+      <!-- Item 6: Cinnamon Cloud -->
+      <div class="menu-item">
+        <img
+          src="https://images.unsplash.com/photo-1568148847348-1c03e5cc84d9?auto=format&fit=crop&w=1200&q=80"
+          alt="Cinnamon and sugar donut on a plate"
+          class="menu-img"
+          loading="lazy"
+          decoding="async"
+          referrerpolicy="no-referrer"
+          width="1200"
+          height="800"
+        >
+        <div class="menu-info">
+          <h3>Cinnamon Cloud</h3>
+          <p>Feather-light donut rolled in cinnamon sugar — warm, fragrant, and irresistibly soft.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact-section">
+    <div class="info-container">
+      <div class="info-box">
+        <h3>Contact Information</h3>
+        <p><strong>Phone:</strong> (555) 892-0432</p>
+        <p><strong>Email:</strong> hello@twodonuts.com</p>
+        <p><strong>Social:</strong> @TwoDonutsOneCup</p>
+      </div>
+      <div class="info-box">
+        <h3>Opening Hours</h3>
+        <p><strong>Mon - Fri:</strong> 6:30 AM - 5:00 PM</p>
+        <p><strong>Saturday:</strong> 7:00 AM - 6:00 PM</p>
+        <p><strong>Sunday:</strong> 8:00 AM - 4:00 PM</p>
+      </div>
+    </div>
+
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215707164965!2d-73.98784412402466!3d40.7579747713866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Two Donuts and a Cup of Coffee. Steeped in tradition, glazed in love.</p>
+  </footer>
+</body>
+</html>
