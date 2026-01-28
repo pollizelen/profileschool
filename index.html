@@ -1,445 +1,465 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Two Donuts & A Cup of Coffee | Artisan Pairings</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dr. Elena Vance • Compassionate Psychological Counseling</title>
+    <style>
+        :root {
+            /* Warm & Welcoming Color Palette */
+            --bg: #fdfaf7;       /* Soft Linen */
+            --surface: #ffffff;
+            --text: #3c3431;     /* Soft Deep Espresso */
+            --muted: #706663;    /* Muted Taupe */
+            --border: #ede4dc;   /* Warm Sand Border */
+            --accent: #966b4d;   /* Gentle Terracotta */
+            --accent-light: #f7ede4;
+            --shadow: 0 10px 30px rgba(150, 107, 77, 0.06);
+            --shadow-hover: 0 20px 40px rgba(150, 107, 77, 0.12);
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+            /* Typography */
+            --font-serif: "Georgia", Times, serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  <style>
-    /* --- CSS Variables & Reset --- */
-    :root {
-      --primary-brown: #4B3621;
-      --accent-brown: #6F4E37;
-      --warm-cream: #FDF5E6;
-      --soft-tan: #D2B48C;
-      --floral-pink: #E8B4B8;
-      --text-dark: #2C1E12;
-      --white: #ffffff;
-      --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    }
+            /* UI Standards */
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --container-width: 1100px;
+            --header-height: 80px;
+            --transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--warm-cream);
-      color: var(--text-dark);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+        /* --- Global Elements --- */
+        .container { max-width: var(--container-width); margin: 0 auto; padding: 0 32px; }
+        h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; letter-spacing: -0.01em; color: var(--text); }
+        h1 { font-size: clamp(2.5rem, 6vw, 3.5rem); line-height: 1.1; }
+        h2 { font-size: clamp(2rem, 4vw, 2.5rem); margin-bottom: 24px; text-align: center; }
+        p { margin-bottom: 20px; font-size: 1.1rem; }
 
-    h1, h2, h3 {
-      font-family: 'Playfair Display', serif;
-      color: var(--primary-brown);
-    }
+        .btn {
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            padding: 18px 36px;
+            border-radius: 100px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            font-size: 1rem;
+        }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-primary:hover { background: #7d5940; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(150, 107, 77, 0.3); }
+        .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+        .btn-secondary:hover { border-color: var(--accent); transform: translateY(-3px); }
 
-    /* IMPORTANT: prevents inline image gaps / weird layout in some browsers */
-    img { display: block; max-width: 100%; height: auto; }
+        /* --- Header --- */
+        header {
+            position: fixed; top: 0; width: 100%; height: var(--header-height);
+            background: rgba(253, 250, 247, 0.85);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            z-index: 1000; border-bottom: 1px solid rgba(150, 107, 77, 0.05);
+        }
+        header .container { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+        .logo { font-family: var(--font-serif); font-size: 1.4rem; color: var(--text); font-weight: 500; }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a:not(.btn) { color: var(--muted); font-size: 0.95rem; text-decoration: none; }
+        .nav-links a:hover { color: var(--accent); }
 
-    /* --- Sticky Navigation --- */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(253, 245, 230, 0.98);
-      backdrop-filter: blur(10px);
-      border-bottom: 2px solid var(--soft-tan);
-      padding: 1rem 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
+        /* --- Hero Section --- */
+        .hero { padding: 180px 0 100px; position: relative; overflow: hidden; }
+        .hero-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: center; }
+        .hero-content { position: relative; z-index: 2; }
+        .hero-sub { color: var(--muted); font-size: 1.25rem; margin-bottom: 40px; }
 
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--primary-brown);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+        .hero-image-wrapper { position: relative; display: flex; justify-content: center; }
+        .hero-image {
+            width: 100%; height: 500px; object-fit: cover;
+            border-radius: 40% 60% 60% 40% / 30% 30% 70% 70%;
+            box-shadow: var(--shadow-hover);
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 15%; right: 5%; width: 500px; height: 500px;
+            background: var(--accent-light); border-radius: 50%; filter: blur(80px); z-index: -1; opacity: 0.6;
+        }
 
-    nav ul { display: flex; list-style: none; }
-    nav ul li { margin-left: 2rem; }
+        /* --- Services Section --- */
+        .section { padding: 120px 0; }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .service-card {
+            background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border);
+            overflow: hidden; transition: var(--transition);
+        }
+        .service-card:hover { transform: translateY(-12px); box-shadow: var(--shadow-hover); border-color: var(--accent); }
+        .service-img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .service-info { padding: 32px; }
+        .service-info h3 { font-size: 1.5rem; margin-bottom: 12px; }
+        .service-info p { font-size: 0.95rem; color: var(--muted); margin-bottom: 24px; }
+        .service-price {
+            font-weight: 600; color: var(--accent);
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 1px solid var(--border); padding-top: 20px;
+        }
 
-    nav ul li a {
-      text-decoration: none;
-      color: var(--text-dark);
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: var(--transition);
-    }
+        /* --- About Section --- */
+        .about { background: #f9f4f0; }
+        .about-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
+        .about-image {
+            width: 100%; height: 600px; object-fit: cover;
+            border-radius: var(--radius-lg); box-shadow: var(--shadow);
+        }
+        .credentials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+        .cred-item { display: flex; gap: 12px; align-items: flex-start; }
+        .cred-icon { color: var(--accent); font-size: 1.2rem; }
+        .cred-text strong { display: block; font-size: 0.9rem; color: var(--text); }
+        .cred-text span { font-size: 0.85rem; color: var(--muted); }
 
-    nav ul li a:hover { color: var(--accent-brown); }
+        /* --- FAQ Section --- */
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); margin-bottom: 16px; overflow: hidden; }
+        details[open] { border-color: var(--accent); }
+        summary {
+            padding: 24px; cursor: pointer; font-weight: 500;
+            font-family: var(--font-serif); font-size: 1.2rem;
+            display: flex; justify-content: space-between; align-items: center; list-style: none;
+        }
+        summary::after { content: '+'; color: var(--accent); font-size: 1.5rem; transition: transform 0.3s; }
+        details[open] summary::after { transform: rotate(45deg); }
+        .faq-content { padding: 0 24px 24px; color: var(--muted); font-size: 1.05rem; }
 
-    /* --- Hero Section --- */
-    #hero {
-      height: 85vh;
-      background:
-        linear-gradient(rgba(75, 54, 33, 0.5), rgba(75, 54, 33, 0.5)),
-        url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: var(--white);
-      padding: 0 10%;
-    }
+        /* --- Contact Section --- */
+        .contact-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; }
+        .contact-card { background: var(--accent); color: white; padding: 48px; border-radius: var(--radius-lg); }
+        .contact-card h2 { color: white; text-align: left; margin-bottom: 32px; }
+        .contact-link { display: block; color: white; text-decoration: none; margin-bottom: 24px; font-size: 1.1rem; opacity: 0.9; }
+        .contact-link:hover { opacity: 1; }
 
-    #hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      margin-bottom: 1rem;
-      color: var(--white);
-      text-shadow: 2px 2px 15px rgba(0,0,0,0.4);
-    }
+        .contact-form { background: var(--surface); border: 1px solid var(--border); padding: 48px; border-radius: var(--radius-lg); }
+        .form-group { margin-bottom: 24px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem; }
+        input, select, textarea {
+            width: 100%; padding: 16px; border-radius: 12px; border: 1px solid var(--border);
+            font-family: inherit; font-size: 1rem; transition: border-color 0.3s;
+        }
+        input:focus, textarea:focus { outline: none; border-color: var(--accent); }
+        #success-msg { display: none; text-align: center; padding: 40px 0; }
 
-    #hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2.5rem;
-      max-width: 700px;
-      font-weight: 300;
-    }
+        /* --- Footer --- */
+        footer { padding: 60px 0; border-top: 1px solid var(--border); font-size: 0.9rem; color: var(--muted); }
+        .crisis-disclaimer {
+            background: #fff4f4; color: #a34e4e; padding: 20px; border-radius: 12px; margin-bottom: 40px;
+            text-align: center; font-weight: 500;
+        }
 
-    .cta-btn {
-      padding: 1.2rem 3rem;
-      background-color: var(--accent-brown);
-      color: var(--white);
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 600;
-      transition: var(--transition);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
+        /* --- Animation --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: var(--transition); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-    .cta-btn:hover {
-      background-color: var(--white);
-      color: var(--primary-brown);
-      transform: translateY(-5px);
-    }
+        /* --- Responsive --- */
+        @media (max-width: 992px) {
+            .hero-layout, .about-layout, .services-grid, .contact-layout { grid-template-columns: 1fr; }
+            .hero-image-wrapper { order: -1; }
+            .hero-image { height: 350px; }
+            .nav-links { display: none; }
+            .about-image { height: 400px; }
+        }
 
-    /* --- Common Section Styling --- */
-    section { padding: 6rem 10%; }
-
-    .section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      position: relative;
-    }
-
-    .section-title::after {
-      content: '✿';
-      display: block;
-      color: var(--floral-pink);
-      font-size: 1.5rem;
-      margin-top: 0.5rem;
-    }
-
-    /* --- About Us Section --- */
-    #about {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 4rem;
-      background: #fffaf5;
-    }
-
-    .about-content h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
-
-    .about-image {
-      width: 100%;
-      height: 450px;
-      object-fit: cover;
-      border-radius: 20px;
-      box-shadow: 20px 20px 0px var(--soft-tan);
-    }
-
-    /* --- Menu Preview --- */
-    #menu { background-color: var(--white); }
-
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.5rem;
-    }
-
-    .menu-item {
-      background: var(--warm-cream);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: var(--transition);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    }
-
-    .menu-item:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(75, 54, 33, 0.15);
-    }
-
-    /* Ensures “always correct display”: fixed height + crop + neutral background */
-    .menu-img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      background: #f2eadc;
-    }
-
-    .menu-info {
-      padding: 1.5rem;
-      text-align: center;
-    }
-
-    .menu-info h3 { margin-bottom: 0.5rem; font-size: 1.4rem; }
-
-    /* --- Info & Map Section --- */
-    #contact-section {
-      background-color: var(--warm-cream);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      padding-bottom: 4rem;
-    }
-
-    .info-container {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .info-box {
-      background: var(--white);
-      padding: 2.5rem;
-      border-radius: 20px;
-      border: 1px solid var(--soft-tan);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .info-box::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 5px;
-      background: var(--accent-brown);
-    }
-
-    .map-container {
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      min-height: 400px;
-    }
-
-    iframe { width: 100%; height: 100%; border: 0; }
-
-    /* --- Footer --- */
-    footer {
-      text-align: center;
-      padding: 3rem;
-      background: var(--primary-brown);
-      color: var(--white);
-    }
-
-    /* --- Responsive Design --- */
-    @media (max-width: 992px) {
-      #about, #contact-section { grid-template-columns: 1fr; text-align: center; }
-      .about-image { box-shadow: 10px 10px 0px var(--soft-tan); }
-    }
-
-    @media (max-width: 768px) {
-      header { flex-direction: column; padding: 1.5rem; }
-      nav ul { margin-top: 1.5rem; }
-      nav ul li { margin: 0 0.8rem; }
-      section { padding: 4rem 5%; }
-    }
-  </style>
+        @media (prefers-reduced-motion: reduce) {
+            .reveal, .btn, .service-card { transition: none !important; transform: none !important; opacity: 1 !important; }
+        }
+    </style>
 </head>
-
 <body>
-  <header>
-    <a href="#" class="logo">☕ 2 Donuts & A Cup</a>
-    <nav>
-      <ul>
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#about">Our Story</a></li>
-        <li><a href="#menu">Menu</a></li>
-        <li><a href="#contact-section">Find Us</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <section id="hero">
-    <h1>Two Donuts and a Cup of Coffee</h1>
-    <p>A morning tradition, perfected. We pair the city's fluffiest artisan donuts with bold, ethically sourced coffee for the ultimate breakfast harmony.</p>
-    <a href="#menu" class="cta-btn">Explore the Pairings</a>
-  </section>
-
-  <section id="about">
-    <div class="about-content">
-      <h2>Our Story</h2>
-      <p>Founded by two friends with a simple philosophy: "Quality over quantity." We spent years finding the exact coffee bean roast that complements the buttery crumb of our signature donuts. Every morning, we wake up at 3:00 AM to ensure that when you walk through our doors, you smell the magic of fresh yeast and roasting arabica.</p>
+<header>
+    <div class="container">
+        <a href="#" class="logo">Dr. Elena Vance</a>
+        <nav class="nav-links">
+            <a href="#about">The Practice</a>
+            <a href="#services">Services</a>
+            <a href="#contact" class="btn btn-primary">Book a Conversation</a>
+        </nav>
     </div>
-    <img
-      src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80"
-      alt="Coffee being poured into a cup"
-      class="about-image"
-      loading="lazy"
-      decoding="async"
-      referrerpolicy="no-referrer"
-    >
-  </section>
+</header>
 
-  <section id="menu">
-    <h2 class="section-title">The Signature Menu</h2>
-
-    <div class="menu-grid">
-      <!-- Item 1: Velvet Latte -->
-      <div class="menu-item">
-        <img
-          src="https://images.unsplash.com/photo-1502462041640-b3d7e50d0662?auto=format&fit=crop&w=1200&q=80"
-          alt="Velvet latte with latte art"
-          class="menu-img"
-          loading="lazy"
-          decoding="async"
-          referrerpolicy="no-referrer"
-          width="1200"
-          height="800"
-        >
-        <div class="menu-info">
-          <h3>The Velvet Latte</h3>
-          <p>Double espresso with silky micro-foam and a hint of homemade cinnamon syrup.</p>
+<section class="hero">
+    <div class="container">
+        <div class="hero-layout">
+            <div class="hero-content reveal">
+                <h1>A safe space to find your emotional balance.</h1>
+                <p class="hero-sub">
+                    Welcome. I am Dr. Elena Vance, a clinical psychologist dedicated to providing compassionate,
+                    evidence-based therapy for those seeking clarity, healing, and personal growth.
+                </p>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                    <a href="#contact" class="btn btn-primary">Book Initial Consultation</a>
+                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper reveal" style="transition-delay: 0.2s;">
+                <img
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800"
+                    alt="Dr. Elena Vance"
+                    class="hero-image"
+                    loading="lazy"
+                    decoding="async"
+                    referrerpolicy="no-referrer"
+                />
+            </div>
         </div>
-      </div>
-
-      <!-- Item 2: Classic Duo -->
-      <div class="menu-item">
-        <img
-          src="https://images.unsplash.com/photo-1634834576474-c3500f65cbff?auto=format&fit=crop&w=1200&q=80"
-          alt="Glazed donuts paired with coffee"
-          class="menu-img"
-          loading="lazy"
-          decoding="async"
-          referrerpolicy="no-referrer"
-          width="1200"
-          height="800"
-        >
-        <div class="menu-info">
-          <h3>The Classic Duo</h3>
-          <p>Two vanilla-bean glazed donuts paired with our signature Midnight Brew dark roast.</p>
-        </div>
-      </div>
-
-      <!-- Item 3: Floral Strawberry -->
-      <div class="menu-item">
-        <img
-          src="https://images.unsplash.com/photo-1533910534207-90f31029a78e?auto=format&fit=crop&w=1200&q=80"
-          alt="Strawberry-glazed donuts on a pink background"
-          class="menu-img"
-          loading="lazy"
-          decoding="async"
-          referrerpolicy="no-referrer"
-          width="1200"
-          height="800"
-        >
-        <div class="menu-info">
-          <h3>Floral Strawberry</h3>
-          <p>Real strawberry glaze with dried rose petals. Pairs beautifully with iced white tea coffee.</p>
-        </div>
-      </div>
-
-      <!-- Item 4: Mocha Indulgence -->
-      <div class="menu-item">
-        <img
-          src="https://images.unsplash.com/photo-1533651441215-d01c13c8c4ad?auto=format&fit=crop&w=1200&q=80"
-          alt="Chocolate mocha in a glass mug"
-          class="menu-img"
-          loading="lazy"
-          decoding="async"
-          referrerpolicy="no-referrer"
-          width="1200"
-          height="800"
-        >
-        <div class="menu-info">
-          <h3>Mocha Indulgence</h3>
-          <p>Rich Belgian chocolate and espresso topped with a mini chocolate-sprinkle donut.</p>
-        </div>
-      </div>
-
-      <!-- Item 5: Iced Honey Latte (new image that shows iced coffee + drizzle) -->
-      <div class="menu-item">
-        <img
-          src="https://images.unsplash.com/photo-1621361344464-c7999d64f585?auto=format&fit=crop&w=1200&q=80"
-          alt="Iced latte in a jar with cream being poured in"
-          class="menu-img"
-          loading="lazy"
-          decoding="async"
-          referrerpolicy="no-referrer"
-          width="1200"
-          height="800"
-        >
-        <div class="menu-info">
-          <h3>Iced Honey Latte</h3>
-          <p>Chilled espresso, oat milk, and a soft honey drizzle — smooth, bright, and refreshing.</p>
-        </div>
-      </div>
-
-      <!-- Item 6: Cinnamon Cloud -->
-      <div class="menu-item">
-        <img
-          src="https://images.unsplash.com/photo-1568148847348-1c03e5cc84d9?auto=format&fit=crop&w=1200&q=80"
-          alt="Cinnamon and sugar donut on a plate"
-          class="menu-img"
-          loading="lazy"
-          decoding="async"
-          referrerpolicy="no-referrer"
-          width="1200"
-          height="800"
-        >
-        <div class="menu-info">
-          <h3>Cinnamon Cloud</h3>
-          <p>Feather-light donut rolled in cinnamon sugar — warm, fragrant, and irresistibly soft.</p>
-        </div>
-      </div>
     </div>
-  </section>
+</section>
 
-  <section id="contact-section">
-    <div class="info-container">
-      <div class="info-box">
-        <h3>Contact Information</h3>
-        <p><strong>Phone:</strong> (555) 892-0432</p>
-        <p><strong>Email:</strong> hello@twodonuts.com</p>
-        <p><strong>Social:</strong> @TwoDonutsOneCup</p>
-      </div>
-      <div class="info-box">
-        <h3>Opening Hours</h3>
-        <p><strong>Mon - Fri:</strong> 6:30 AM - 5:00 PM</p>
-        <p><strong>Saturday:</strong> 7:00 AM - 6:00 PM</p>
-        <p><strong>Sunday:</strong> 8:00 AM - 4:00 PM</p>
-      </div>
+<section class="section" id="services">
+    <div class="container">
+        <h2 class="reveal">Healing in different forms</h2>
+
+        <div class="services-grid">
+            <!-- Individual -->
+            <div class="service-card reveal">
+                <!-- Embedded SVG (no external host) -->
+                <img
+                    class="service-img"
+                    alt="Individual Therapy"
+                    loading="lazy"
+                    decoding="async"
+                    src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%201200%20800%27%3E%3Cdefs%3E%3CradialGradient%20id%3D%27g%27%20cx%3D%2730%25%27%20cy%3D%2725%25%27%20r%3D%2780%25%27%3E%3Cstop%20offset%3D%270%25%27%20stop-color%3D%27%23ffffff%27%20stop-opacity%3D%271%27/%3E%3Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%23f7ede4%27%20stop-opacity%3D%271%27/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect%20width%3D%271200%27%20height%3D%27800%27%20fill%3D%27url(%23g)%27/%3E%3Cpath%20d%3D%27M90%20670%20C220%20560%20330%20540%20460%20585%20C590%20630%20690%20725%20840%20700%20C990%20675%201060%20580%201120%20535%20L1120%20800%20L90%20800%20Z%27%20fill%3D%27%23efe1d6%27/%3E%3Ccircle%20cx%3D%27335%27%20cy%3D%27320%27%20r%3D%2776%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27/%3E%3Cpath%20d%3D%27M250%20590%20C255%20490%20300%20435%20335%20435%20C370%20435%20415%20490%20420%20590%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M515%20310%20C575%20230%20710%20205%20788%20272%20C860%20334%20835%20460%20740%20486%20C652%20510%20556%20440%20540%20362%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23966b4d%27%20stroke-width%3D%2710%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M610%20370%20L660%20420%20L765%20305%27%20fill%3D%27none%27%20stroke%3D%27%23966b4d%27%20stroke-width%3D%2712%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27/%3E%3Ccircle%20cx%3D%27945%27%20cy%3D%27210%27%20r%3D%276%27%20fill%3D%27%23966b4d%27%20opacity%3D%270.55%27/%3E%3Ccircle%20cx%3D%27980%27%20cy%3D%27245%27%20r%3D%2710%27%20fill%3D%27%23966b4d%27%20opacity%3D%270.35%27/%3E%3Ccircle%20cx%3D%271020%27%20cy%3D%27205%27%20r%3D%278%27%20fill%3D%27%23966b4d%27%20opacity%3D%270.25%27/%3E%3C/svg%3E"
+                />
+                <div class="service-info">
+                    <h3>Individual Support</h3>
+                    <p>One-on-one sessions focused on anxiety, depression, burnout, and life transitions in a warm, non-judgmental environment.</p>
+                    <div class="service-price">
+                        <span>50 Minutes</span>
+                        <span>180 CHF</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Couples -->
+            <div class="service-card reveal" style="transition-delay: 0.1s;">
+                <img
+                    class="service-img"
+                    alt="Couples Therapy"
+                    loading="lazy"
+                    decoding="async"
+                    src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%201200%20800%27%3E%3Cdefs%3E%3CradialGradient%20id%3D%27g%27%20cx%3D%2760%25%27%20cy%3D%2720%25%27%20r%3D%2785%25%27%3E%3Cstop%20offset%3D%270%25%27%20stop-color%3D%27%23ffffff%27/%3E%3Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%23f7ede4%27/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect%20width%3D%271200%27%20height%3D%27800%27%20fill%3D%27url(%23g)%27/%3E%3Cpath%20d%3D%27M60%20670%20C220%20595%20345%20560%20490%20590%20C645%20622%20780%20725%20945%20695%20C1085%20670%201135%20570%201170%20515%20L1170%20800%20L60%20800%20Z%27%20fill%3D%27%23efe1d6%27/%3E%3Ccircle%20cx%3D%27440%27%20cy%3D%27310%27%20r%3D%2768%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27/%3E%3Ccircle%20cx%3D%27680%27%20cy%3D%27310%27%20r%3D%2768%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27/%3E%3Cpath%20d%3D%27M355%20590%20C360%20490%20405%20438%20440%20438%20C475%20438%20520%20490%20525%20590%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M595%20590%20C600%20490%20645%20438%20680%20438%20C715%20438%20760%20490%20765%20590%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M560%20390%20C590%20345%20610%20330%20630%20330%20C650%20330%20670%20345%20700%20390%20C730%20435%20695%20495%20630%20518%20C565%20495%20530%20435%20560%20390%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23966b4d%27%20stroke-width%3D%2710%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M500%20430%20C540%20490%20585%20525%20630%20525%20C675%20525%20720%20490%20760%20430%27%20fill%3D%27none%27%20stroke%3D%27%23966b4d%27%20stroke-width%3D%2710%27%20stroke-linecap%3D%27round%27/%3E%3Ccircle%20cx%3D%27980%27%20cy%3D%27210%27%20r%3D%279%27%20fill%3D%27%23966b4d%27%20opacity%3D%270.25%27/%3E%3Ccircle%20cx%3D%271020%27%20cy%3D%27245%27%20r%3D%276%27%20fill%3D%27%23966b4d%27%20opacity%3D%270.45%27/%3E%3C/svg%3E"
+                />
+                <div class="service-info">
+                    <h3>Couple Consultations</h3>
+                    <p>Facilitated dialogue to help partners rebuild trust, improve communication, and navigate relationship milestones together.</p>
+                    <div class="service-price">
+                        <span>80 Minutes</span>
+                        <span>250 CHF</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group -->
+            <div class="service-card reveal" style="transition-delay: 0.2s;">
+                <img
+                    class="service-img"
+                    alt="Group Workshop"
+                    loading="lazy"
+                    decoding="async"
+                    src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%201200%20800%27%3E%3Cdefs%3E%3CradialGradient%20id%3D%27g%27%20cx%3D%2750%25%27%20cy%3D%2720%25%27%20r%3D%2790%25%27%3E%3Cstop%20offset%3D%270%25%27%20stop-color%3D%27%23ffffff%27/%3E%3Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%23f7ede4%27/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect%20width%3D%271200%27%20height%3D%27800%27%20fill%3D%27url(%23g)%27/%3E%3Cpath%20d%3D%27M70%20680%20C240%20585%20370%20550%20510%20585%20C650%20620%20760%20720%20920%20705%20C1065%20690%201120%20595%201150%20550%20L1150%20800%20L70%20800%20Z%27%20fill%3D%27%23efe1d6%27/%3E%3Ccircle%20cx%3D%27340%27%20cy%3D%27325%27%20r%3D%2760%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27/%3E%3Ccircle%20cx%3D%27600%27%20cy%3D%27285%27%20r%3D%2768%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27/%3E%3Ccircle%20cx%3D%27860%27%20cy%3D%27325%27%20r%3D%2760%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27/%3E%3Cpath%20d%3D%27M260%20590%20C265%20505%20305%20465%20340%20465%20C375%20465%20415%20505%20420%20590%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M510%20590%20C520%20480%20565%20430%20600%20430%20C635%20430%20680%20480%20690%20590%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M780%20590%20C785%20505%20825%20465%20860%20465%20C895%20465%20935%20505%20940%20590%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M455%20365%20C515%20310%20560%20295%20600%20295%20C640%20295%20685%20310%20745%20365%27%20fill%3D%27none%27%20stroke%3D%27%23966b4d%27%20stroke-width%3D%2710%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M430%20435%20C510%20495%20555%20515%20600%20515%20C645%20515%20690%20495%20770%20435%27%20fill%3D%27none%27%20stroke%3D%27%23966b4d%27%20stroke-width%3D%2710%27%20stroke-linecap%3D%27round%27/%3E%3Ccircle%20cx%3D%27990%27%20cy%3D%27225%27%20r%3D%278%27%20fill%3D%27%23966b4d%27%20opacity%3D%270.35%27/%3E%3Ccircle%20cx%3D%271025%27%20cy%3D%27205%27%20r%3D%276%27%20fill%3D%27%23966b4d%27%20opacity%3D%270.55%27/%3E%3C/svg%3E"
+                />
+                <div class="service-info">
+                    <h3>Group Workshops</h3>
+                    <p>Shared therapeutic spaces for social anxiety, grief processing, or mindfulness-based stress reduction techniques.</p>
+                    <div class="service-price">
+                        <span>90 Minutes</span>
+                        <span>80 CHF</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</section>
 
-    <div class="map-container">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215707164965!2d-73.98784412402466!3d40.7579747713866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+<section class="section about" id="about">
+    <div class="container">
+        <div class="about-layout">
+            <img
+                src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=800"
+                alt="Therapy Room"
+                class="about-image reveal"
+                loading="lazy"
+                decoding="async"
+                referrerpolicy="no-referrer"
+            />
+            <div class="about-content reveal">
+                <h2>My Therapeutic Approach</h2>
+                <p>
+                    I believe that therapy is a collaborative journey. My practice is rooted in
+                    <strong>Acceptance and Commitment Therapy (ACT)</strong> and <strong>Mindfulness</strong>.
+                    Together, we work not just to reduce "symptoms," but to help you move toward a life that feels vital, rich, and meaningful.
+                </p>
+                <p>
+                    Whether you are facing a specific crisis or a general sense of feeling "stuck," I provide a grounded, compassionate presence
+                    to help you navigate your inner world.
+                </p>
+
+                <div class="credentials-grid">
+                    <div class="cred-item">
+                        <span class="cred-icon">✓</span>
+                        <div class="cred-text"><strong>PhD in Clinical Psychology</strong><span>University of Zurich</span></div>
+                    </div>
+                    <div class="cred-item">
+                        <span class="cred-icon">✓</span>
+                        <div class="cred-text"><strong>FSP Licensed Member</strong><span>Swiss Psychological Society</span></div>
+                    </div>
+                    <div class="cred-item">
+                        <span class="cred-icon">✓</span>
+                        <div class="cred-text"><strong>Bilingual Practice</strong><span>English &amp; German</span></div>
+                    </div>
+                    <div class="cred-item">
+                        <span class="cred-icon">✓</span>
+                        <div class="cred-text"><strong>12+ Years Experience</strong><span>Hospital &amp; Private Practice</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
+</section>
 
-  <footer>
-    <p>&copy; 2024 Two Donuts and a Cup of Coffee. Steeped in tradition, glazed in love.</p>
-  </footer>
+<section class="section">
+    <div class="container">
+        <h2 class="reveal">Frequently asked questions</h2>
+        <div class="faq-list reveal">
+            <details>
+                <summary>What happens in the first session?</summary>
+                <div class="faq-content">
+                    Our first meeting is an "intake" session. It’s a low-pressure space for us to get to know each other,
+                    discuss your history, and see if my approach feels like the right fit for your needs.
+                </div>
+            </details>
+            <details>
+                <summary>Are online sessions as effective as in-person?</summary>
+                <div class="faq-content">
+                    Research suggests that for most conditions, tele-therapy is just as effective as in-person sessions.
+                    I use a secure, medical-grade video platform to ensure your total privacy.
+                </div>
+            </details>
+            <details>
+                <summary>Is therapy covered by my insurance?</summary>
+                <div class="faq-content">
+                    Most Swiss supplemental insurance (Zusatzversicherung) plans cover a significant portion of psychological counseling.
+                    I recommend checking your policy for "Psychotherapy by non-medical psychologists."
+                </div>
+            </details>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="contact">
+    <div class="container">
+        <div class="contact-layout">
+            <div class="contact-card reveal">
+                <h2>Reach out today</h2>
+                <p>It takes courage to take the first step. I am here to listen whenever you are ready.</p>
+                <div style="margin-top: 40px;">
+                    <a href="mailto:practice@dr-vance.ch" class="contact-link">📧 practice@dr-vance.ch</a>
+                    <a href="tel:+41442010000" class="contact-link">📞 +41 44 201 00 00</a>
+                    <p style="margin-top: 32px; font-size: 0.9rem; opacity: 0.8;">
+                        Location:<br />
+                        Seefeldstrasse 122, 8008 Zurich<br />
+                        (Near Feldeggstrasse tram stop)
+                    </p>
+                </div>
+            </div>
+
+            <div class="contact-form reveal">
+                <form id="contactForm" onsubmit="handleForm(event)">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" required placeholder="Full Name" />
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" required placeholder="email@address.com" />
+                    </div>
+                    <div class="form-group">
+                        <label>How can I help you?</label>
+                        <select required>
+                            <option value="individual">Individual Therapy</option>
+                            <option value="couples">Couples Counseling</option>
+                            <option value="group">Group Workshop</option>
+                            <option value="question">General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Message (Optional)</label>
+                        <textarea rows="4" placeholder="Briefly describe what's on your mind..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Inquiry</button>
+                </form>
+
+                <div id="success-msg">
+                    <h2 style="text-align: center; color: var(--accent);">Thank you.</h2>
+                    <p>I have received your message and will get back to you within 24 business hours.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="crisis-disclaimer">
+            <strong>Important:</strong> If you are in a mental health emergency or experiencing suicidal thoughts,
+            please call 144 (Switzerland) or the 24/7 Crisis Line at 143 immediately. This contact form is for non-urgent appointments only.
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+            <p>&copy; 2024 Dr. Elena Vance • Professional Clinical Psychologist</p>
+            <div style="display: flex; gap: 20px;">
+                <a href="#" style="color: var(--muted); text-decoration: none;">Privacy Policy</a>
+                <a href="#" style="color: var(--muted); text-decoration: none;">Impressum</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Scroll Reveal Logic
+    const observerOptions = { threshold: 0.15 };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Form Handling
+    function handleForm(e) {
+        e.preventDefault();
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+    }
+
+    // Close other FAQs
+    document.querySelectorAll('details').forEach((el) => {
+        el.addEventListener('toggle', () => {
+            if (el.open) {
+                document.querySelectorAll('details').forEach((other) => {
+                    if (other !== el) other.removeAttribute('open');
+                });
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
