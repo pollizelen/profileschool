@@ -1,465 +1,1886 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dr. Elena Vance • Compassionate Psychological Counseling</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Elena Vance | Clinical Psychologist Zurich</title>
+    <meta name="description"
+        content="Compassionate, evidence-based psychology in Zurich. Individual therapy, couples counseling, and workshops.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+
     <style>
         :root {
-            /* Warm & Welcoming Color Palette */
-            --bg: #fdfaf7;       /* Soft Linen */
+            /* --- PALETTE: "Noble Warm Earth" --- */
+            --bg: #fcfbf9;
             --surface: #ffffff;
-            --text: #3c3431;     /* Soft Deep Espresso */
-            --muted: #706663;    /* Muted Taupe */
-            --border: #ede4dc;   /* Warm Sand Border */
-            --accent: #966b4d;   /* Gentle Terracotta */
-            --accent-light: #f7ede4;
-            --shadow: 0 10px 30px rgba(150, 107, 77, 0.06);
-            --shadow-hover: 0 20px 40px rgba(150, 107, 77, 0.12);
 
-            /* Typography */
-            --font-serif: "Georgia", Times, serif;
-            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --text-main: #3e322e;
+            --text-muted: #796b65;
+            --text-light: #ffffff;
 
-            /* UI Standards */
+            /* Warmer, deeper, less pink tones */
+            --primary: #785642;
+            --primary-dark: #5a3d2e;
+
+            --accent: #d4a373;
+            --accent-soft: #fbf5f2;
+
+            --border: #ebe3de;
+
+            /* UI */
             --radius-lg: 24px;
             --radius-md: 16px;
+            --shadow: 0 10px 30px rgba(94, 70, 61, 0.05);
+            --shadow-hover: 0 20px 40px rgba(94, 70, 61, 0.1);
+            --transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
             --container-width: 1100px;
             --header-height: 80px;
-            --transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+            /* FONTS */
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', sans-serif;
+            --font-script: 'Pinyon Script', cursive;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: var(--font-sans);
             background-color: var(--bg);
-            color: var(--text);
+            color: var(--text-main);
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            font-weight: 300;
         }
 
-        /* --- Global Elements --- */
-        .container { max-width: var(--container-width); margin: 0 auto; padding: 0 32px; }
-        h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; letter-spacing: -0.01em; color: var(--text); }
-        h1 { font-size: clamp(2.5rem, 6vw, 3.5rem); line-height: 1.1; }
-        h2 { font-size: clamp(2rem, 4vw, 2.5rem); margin-bottom: 24px; text-align: center; }
-        p { margin-bottom: 20px; font-size: 1.1rem; }
+        /* --- Ambient Background --- */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+            background: var(--bg);
+        }
 
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.5;
+            animation: float 25s infinite alternate;
+        }
+
+        .orb-1 {
+            top: -10%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: #e8dcc6;
+        }
+
+        .orb-2 {
+            bottom: -10%;
+            left: -10%;
+            width: 700px;
+            height: 700px;
+            background: #ebdcd6;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-30px, 40px);
+            }
+        }
+
+        /* --- Global Typography --- */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .section {
+            padding: 120px 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-serif);
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            margin-bottom: 24px;
+        }
+
+        .script-accent {
+            font-family: var(--font-script);
+            /* Deeper, rich copper accent */
+            color: var(--text-main);
+            font-size: 1.15em;
+            font-weight: 400;
+            font-style: normal;
+            display: inline-block;
+            line-height: 1.2;
+            margin-top: 8px;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px auto;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* --- Buttons --- */
         .btn {
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            padding: 18px 36px;
+            justify-content: center;
+            padding: 18px 38px;
             border-radius: 100px;
             font-weight: 500;
             text-decoration: none;
-            transition: var(--transition);
             border: none;
             font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            z-index: 1;
+            letter-spacing: 0.01em;
         }
-        .btn-primary { background: var(--accent); color: white; }
-        .btn-primary:hover { background: #7d5940; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(150, 107, 77, 0.3); }
-        .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
-        .btn-secondary:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(138, 106, 94, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            background: var(--primary-dark);
+            box-shadow: 0 8px 25px rgba(138, 106, 94, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .btn-small {
+            padding: 10px 24px;
+            font-size: 0.9rem;
+        }
 
         /* --- Header --- */
         header {
-            position: fixed; top: 0; width: 100%; height: var(--header-height);
-            background: rgba(253, 250, 247, 0.85);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            z-index: 1000; border-bottom: 1px solid rgba(150, 107, 77, 0.05);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: rgba(252, 251, 249, 0.9);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
         }
-        header .container { display: flex; align-items: center; justify-content: space-between; height: 100%; }
-        .logo { font-family: var(--font-serif); font-size: 1.4rem; color: var(--text); font-weight: 500; }
-        .nav-links { display: flex; align-items: center; gap: 32px; }
-        .nav-links a:not(.btn) { color: var(--muted); font-size: 0.95rem; text-decoration: none; }
-        .nav-links a:hover { color: var(--accent); }
 
-        /* --- Hero Section --- */
-        .hero { padding: 180px 0 100px; position: relative; overflow: hidden; }
-        .hero-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: center; }
-        .hero-content { position: relative; z-index: 2; }
-        .hero-sub { color: var(--muted); font-size: 1.25rem; margin-bottom: 40px; }
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
 
-        .hero-image-wrapper { position: relative; display: flex; justify-content: center; }
-        .hero-image {
-            width: 100%; height: 500px; object-fit: cover;
-            border-radius: 40% 60% 60% 40% / 30% 30% 70% 70%;
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a:not(.btn) {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 160px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 500px;
+            line-height: 1.8;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- NEW: The Light-Up Animation Structure --- */
+
+        /* The container holds the shape and the breathing animation */
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 550px;
             box-shadow: var(--shadow-hover);
-        }
-        .hero::before {
-            content: ''; position: absolute; top: 15%; right: 5%; width: 500px; height: 500px;
-            background: var(--accent-light); border-radius: 50%; filter: blur(80px); z-index: -1; opacity: 0.6;
+            /* The breathing shape applies to the container */
+            border-radius: 40% 60% 60% 40% / 30% 30% 70% 70%;
+            animation: breathe 8s ease-in-out infinite;
+            will-change: border-radius;
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            overflow: hidden;
+            /* Crucial to clip the images inside the shape */
         }
 
-        /* --- Services Section --- */
-        .section { padding: 120px 0; }
-        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-        .service-card {
-            background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border);
-            overflow: hidden; transition: var(--transition);
+        /* Slight scale on hover for extra interactivity */
+        .image-container:hover {
+            transform: scale(1.02);
         }
-        .service-card:hover { transform: translateY(-12px); box-shadow: var(--shadow-hover); border-color: var(--accent); }
-        .service-img { width: 100%; height: 200px; object-fit: cover; display: block; }
-        .service-info { padding: 32px; }
-        .service-info h3 { font-size: 1.5rem; margin-bottom: 12px; }
-        .service-info p { font-size: 0.95rem; color: var(--muted); margin-bottom: 24px; }
-        .service-price {
-            font-weight: 600; color: var(--accent);
-            display: flex; justify-content: space-between; align-items: center;
-            border-top: 1px solid var(--border); padding-top: 20px;
+
+        /* Styling for both images so they overlap perfectly */
+        .hero-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.6s ease-in-out;
+            /* Smooth light transition */
+        }
+
+
+
+        @keyframes breathe {
+            0% {
+                border-radius: 40% 60% 60% 40% / 30% 30% 70% 70%;
+            }
+
+            50% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+
+            100% {
+                border-radius: 40% 60% 60% 40% / 30% 30% 70% 70%;
+            }
+        }
+
+        /* --- Offerings (Tabs) --- */
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .tabs-wrapper {
+            background: var(--surface);
+            padding: 6px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            display: inline-flex;
+            gap: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .tab-btn {
+            padding: 14px 32px;
+            border-radius: 100px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: var(--font-sans);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(138, 106, 94, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        #healing-panel .offerings-grid {
+            justify-content: center;
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 900px;
+            margin: 0 auto 60px;
+        }
+
+        .offering-card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .offering-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+
+        .card-visual {
+            height: 200px;
+            background: var(--accent-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .card-svg {
+            width: 110px;
+            height: 110px;
+            transition: transform 0.5s ease;
+            stroke: var(--primary);
+            stroke-width: 1.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .card-svg .pop {
+            fill: var(--accent);
+            stroke: none;
+            opacity: 0.8;
+        }
+
+        .offering-card:hover .card-svg {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 32px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-body h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .card-body p {
+            flex: 1;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .card-meta {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-family: var(--font-sans);
+        }
+
+        .meta-price {
+            color: var(--primary);
+        }
+
+        /* --- Schedule --- */
+        .schedule-block {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .event-row {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+            transition: var(--transition);
+        }
+
+        .event-row:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow);
+        }
+
+        .event-date {
+            min-width: 70px;
+            text-align: center;
+            line-height: 1.2;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .event-date span {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .event-details {
+            flex: 1;
+        }
+
+        .event-details h4 {
+            font-size: 1.15rem;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        /* --- Self Check --- */
+        .test-section {
+            background: linear-gradient(135deg, #f3f0ec, #e8e3de);
+        }
+
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(to bottom right, #ffffff, var(--bg));
+            padding: 56px;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 15px 35px rgba(94, 70, 61, 0.08);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .intro-visual {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 24px auto;
+        }
+
+        #test-intro h3 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        #test-intro p {
+            max-width: 480px;
+            margin: 0 auto 32px auto;
+            font-size: 1.1rem;
+        }
+
+        .test-progress {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 40px;
+            justify-content: center;
+        }
+
+        .step {
+            width: 50px;
+            height: 6px;
+            background: #eee;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        .step.active {
+            background: var(--accent);
+        }
+
+        .step.completed {
+            background: var(--primary);
+        }
+
+        .test-question {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .test-question.active {
+            display: block;
+        }
+
+        .test-question h4 {
+            font-size: 1.5rem;
+            margin-bottom: 32px;
+            font-weight: 400;
+            font-family: var(--font-sans);
+            color: var(--text-main);
+        }
+
+        .test-options {
+            display: grid;
+            gap: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .test-option {
+            padding: 20px 24px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: left;
+            font-size: 1.05rem;
+            background: #fff;
+        }
+
+        .test-option:hover {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        .test-result {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .result-score {
+            font-size: 3rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 8px;
+            line-height: 1;
+            font-family: var(--font-serif);
         }
 
         /* --- About Section --- */
-        .about { background: #f9f4f0; }
-        .about-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
-        .about-image {
-            width: 100%; height: 600px; object-fit: cover;
-            border-radius: var(--radius-lg); box-shadow: var(--shadow);
-        }
-        .credentials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
-        .cred-item { display: flex; gap: 12px; align-items: flex-start; }
-        .cred-icon { color: var(--accent); font-size: 1.2rem; }
-        .cred-text strong { display: block; font-size: 0.9rem; color: var(--text); }
-        .cred-text span { font-size: 0.85rem; color: var(--muted); }
-
-        /* --- FAQ Section --- */
-        .faq-list { max-width: 800px; margin: 0 auto; }
-        details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); margin-bottom: 16px; overflow: hidden; }
-        details[open] { border-color: var(--accent); }
-        summary {
-            padding: 24px; cursor: pointer; font-weight: 500;
-            font-family: var(--font-serif); font-size: 1.2rem;
-            display: flex; justify-content: space-between; align-items: center; list-style: none;
-        }
-        summary::after { content: '+'; color: var(--accent); font-size: 1.5rem; transition: transform 0.3s; }
-        details[open] summary::after { transform: rotate(45deg); }
-        .faq-content { padding: 0 24px 24px; color: var(--muted); font-size: 1.05rem; }
-
-        /* --- Contact Section --- */
-        .contact-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; }
-        .contact-card { background: var(--accent); color: white; padding: 48px; border-radius: var(--radius-lg); }
-        .contact-card h2 { color: white; text-align: left; margin-bottom: 32px; }
-        .contact-link { display: block; color: white; text-decoration: none; margin-bottom: 24px; font-size: 1.1rem; opacity: 0.9; }
-        .contact-link:hover { opacity: 1; }
-
-        .contact-form { background: var(--surface); border: 1px solid var(--border); padding: 48px; border-radius: var(--radius-lg); }
-        .form-group { margin-bottom: 24px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem; }
-        input, select, textarea {
-            width: 100%; padding: 16px; border-radius: 12px; border: 1px solid var(--border);
-            font-family: inherit; font-size: 1rem; transition: border-color 0.3s;
-        }
-        input:focus, textarea:focus { outline: none; border-color: var(--accent); }
-        #success-msg { display: none; text-align: center; padding: 40px 0; }
-
-        /* --- Footer --- */
-        footer { padding: 60px 0; border-top: 1px solid var(--border); font-size: 0.9rem; color: var(--muted); }
-        .crisis-disclaimer {
-            background: #fff4f4; color: #a34e4e; padding: 20px; border-radius: 12px; margin-bottom: 40px;
-            text-align: center; font-weight: 500;
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: center;
         }
 
-        /* --- Animation --- */
-        .reveal { opacity: 0; transform: translateY(30px); transition: var(--transition); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        /* Lamp image container with day/night transition */
+        .lamp-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            /* Fix for Safari/Chrome border-radius clipping bug during animations */
+            transform: translateZ(0);
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            mask-image: radial-gradient(white, black);
+        }
+
+        .lamp-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.8s ease-in-out;
+            /* Ensure image itself is rounded as a fallback */
+            border-radius: inherit;
+        }
+
+        /* Dark image (default) */
+        .lamp-img.dark {
+            z-index: 1;
+            opacity: 1;
+        }
+
+        /* Light image (hidden by default) */
+        .lamp-img.light {
+            z-index: 2;
+            opacity: 0;
+        }
+
+        /* On hover: reveal the light (day) image */
+        .lamp-container:hover .lamp-img.light {
+            opacity: 1;
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .cred-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .cred-icon {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        .cred-text strong {
+            display: block;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .cred-text span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* --- Contact Form --- */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 0;
+            box-shadow: var(--shadow);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .contact-info {
+            background: var(--primary);
+            padding: 56px;
+            color: white;
+        }
+
+        .contact-info h2 {
+            color: white;
+            text-align: left;
+            margin-bottom: 24px;
+        }
+
+        .contact-info p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 32px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            transform: translateX(5px);
+            opacity: 0.9;
+        }
+
+        .contact-icon-box {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-meta {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .meta-item {
+            margin-bottom: 20px;
+        }
+
+        .meta-item h4 {
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.75rem;
+            margin-bottom: 8px;
+        }
+
+        .meta-item p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        .contact-form {
+            background: var(--surface);
+            padding: 56px;
+            border-left: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid #dcdcdc;
+            font-family: inherit;
+            font-size: 1rem;
+            color: var(--text-main);
+            background: #fff;
+            transition: border 0.3s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: #fdfdfd;
+        }
+
+        input.invalid,
+        select.invalid {
+            border-color: #d32f2f;
+            background-color: #fff8f8;
+        }
+
+        /* --- Modal & Animations --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(62, 50, 46, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal {
+            background: var(--surface);
+            padding: 48px;
+            border-radius: var(--radius-lg);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Testimonials --- */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .testimonial-card {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+
+        .quote-icon {
+            font-size: 4rem;
+            color: var(--accent-soft);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: var(--font-serif);
+            line-height: 1;
+            opacity: 0.8;
+            user-select: none;
+            z-index: 0;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-main);
+            margin-bottom: 24px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- FAQ --- */
+        .faq-container {
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
+
+        .faq-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-question {
+            padding: 24px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 400;
+            color: var(--text-main);
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: var(--accent-soft);
+        }
+
+        .faq-answer {
+            padding: 0 32px;
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow: hidden;
+        }
+
+        .faq-item.opened .faq-answer {
+            grid-template-rows: 1fr;
+        }
+
+        .faq-answer-inner {
+            overflow: hidden;
+            min-height: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            opacity: 0;
+            transform: translateY(-10px);
+            padding-bottom: 24px;
+            padding-top: 8px;
+        }
+
+        .faq-item.opened .faq-answer-inner {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.1s;
+        }
+
+        .faq-icon {
+            font-size: 1.2rem;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--accent);
+        }
+
+        .faq-item.opened .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* --- Crisis Section --- */
+        .crisis-section {
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            padding: 60px 0;
+        }
+
+        .crisis-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+        .crisis-card {
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .crisis-card h4 {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            margin-bottom: 4px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .crisis-card p {
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--primary);
+        }
+
+        .disclaimer-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .disclaimer-title {
+            color: var(--text-main);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.75rem;
+        }
 
         /* --- Responsive --- */
         @media (max-width: 992px) {
-            .hero-layout, .about-layout, .services-grid, .contact-layout { grid-template-columns: 1fr; }
-            .hero-image-wrapper { order: -1; }
-            .hero-image { height: 350px; }
-            .nav-links { display: none; }
-            .about-image { height: 400px; }
-        }
 
-        @media (prefers-reduced-motion: reduce) {
-            .reveal, .btn, .service-card { transition: none !important; transform: none !important; opacity: 1 !important; }
+            .hero-layout,
+            .about-layout,
+            .contact-layout,
+            .testimonials-grid,
+            #healing-panel .offerings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-image {
+                order: -1;
+                height: 350px;
+            }
+
+            .test-container,
+            .contact-info,
+            .contact-form {
+                padding: 32px;
+            }
+
+            .event-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .event-date {
+                flex-direction: row;
+                gap: 12px;
+                text-align: left;
+            }
+
+            h1 {
+                font-size: 2.4rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<header>
-    <div class="container">
-        <a href="#" class="logo">Dr. Elena Vance</a>
-        <nav class="nav-links">
-            <a href="#about">The Practice</a>
-            <a href="#services">Services</a>
-            <a href="#contact" class="btn btn-primary">Book a Conversation</a>
-        </nav>
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
     </div>
-</header>
 
-<section class="hero">
-    <div class="container">
-        <div class="hero-layout">
-            <div class="hero-content reveal">
-                <h1>A safe space to find your emotional balance.</h1>
-                <p class="hero-sub">
-                    Welcome. I am Dr. Elena Vance, a clinical psychologist dedicated to providing compassionate,
-                    evidence-based therapy for those seeking clarity, healing, and personal growth.
-                </p>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Dr. Elena Vance</a>
+            <nav class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#about">About me</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#faq">FAQ</a>
+                <a href="#self-check">Self-Check</a>
+                <a href="#contact" class="btn btn-primary btn-small">Book Session</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-layout">
+            <div class="hero-text reveal">
+                <h1>A safe space to find your <br><span class="script-accent">emotional balance.</span></h1>
+                <p class="hero-sub">Welcome. I am Dr. Elena Vance, a clinical psychologist dedicated to providing
+                    compassionate, evidence-based therapy for those seeking clarity.</p>
                 <div style="display: flex; gap: 16px; flex-wrap: wrap;">
                     <a href="#contact" class="btn btn-primary">Book Initial Consultation</a>
-                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                    <a href="#services" class="btn btn-secondary">Explore Services</a>
                 </div>
             </div>
-            <div class="hero-image-wrapper reveal" style="transition-delay: 0.2s;">
-                <img
-                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800"
-                    alt="Dr. Elena Vance"
-                    class="hero-image"
-                    loading="lazy"
-                    decoding="async"
-                    referrerpolicy="no-referrer"
-                />
+
+            <div class="hero-visual reveal">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800"
+                        alt="Dr. Vance Office" class="hero-img">
+                </div>
             </div>
+        </div>
+    </section>
+
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>How can I help you today?</h2>
+                <p>Choose the path that resonates with your current needs.</p>
+            </div>
+
+            <div class="tabs-container reveal">
+                <div class="tabs-wrapper">
+                    <button class="tab-btn active" onclick="switchTab('healing')">Deep Healing & Therapy</button>
+                    <button class="tab-btn" onclick="switchTab('growth')">Creative Growth & Workshops</button>
+                </div>
+            </div>
+
+            <div id="healing-panel" class="tab-content active">
+                <div class="offerings-grid">
+                    <div class="offering-card">
+                        <div class="card-visual">
+                            <svg class="card-svg" viewBox="0 0 100 100">
+                                <path d="M50,90 C50,90 30,80 30,50 C30,25 50,15 70,15 C85,15 90,25 90,40" />
+                                <path d="M60,40 Q70,30 80,40 T90,50" opacity="0.6" />
+                                <circle cx="65" cy="55" r="6" class="pop" />
+                            </svg>
+                        </div>
+                        <div class="card-body">
+                            <h3>Individual Therapy</h3>
+                            <p>One-on-one sessions focused on anxiety, burnout, and life transitions. We work at your
+                                pace to uncover root causes.</p>
+                            <div class="card-meta">
+                                <span>50 Minutes</span>
+                                <span class="meta-price">180 CHF</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="offering-card">
+                        <div class="card-visual">
+                            <svg class="card-svg" viewBox="0 0 100 100">
+                                <circle cx="35" cy="45" r="15" />
+                                <circle cx="65" cy="45" r="15" />
+                                <path d="M35,65 Q50,85 65,65" />
+                                <circle cx="50" cy="55" r="6" class="pop" />
+                            </svg>
+                        </div>
+                        <div class="card-body">
+                            <h3>Couples Counseling</h3>
+                            <p>Facilitated dialogue to help partners rebuild trust and improve communication. Learn to
+                                listen to understand, not just to reply.</p>
+                            <div class="card-meta">
+                                <span>80 Minutes</span>
+                                <span class="meta-price">250 CHF</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="growth-panel" class="tab-content">
+                <div class="offerings-grid">
+                    <div class="offering-card">
+                        <div class="card-visual">
+                            <svg class="card-svg" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="25" />
+                                <circle cx="50" cy="35" r="5" class="pop" />
+                                <circle cx="63" cy="58" r="5" class="pop" />
+                                <circle cx="37" cy="58" r="5" class="pop" />
+                            </svg>
+                        </div>
+                        <div class="card-body">
+                            <h3>Women's Resource Circle</h3>
+                            <p>A supportive gathering to restore balance, share experiences, and nurture inner strength.
+                            </p>
+                            <div class="card-meta">
+                                <span>3 Hours</span>
+                                <span class="meta-price">80 CHF</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="offering-card">
+                        <div class="card-visual">
+                            <svg class="card-svg" viewBox="0 0 100 100">
+                                <path
+                                    d="M15 75C15 75 25 80 50 75C75 70 85 75 85 75V35C85 35 75 30 50 35C25 40 15 35 15 35V75Z" />
+                                <path d="M50 75V35" />
+                                <circle cx="50" cy="25" r="5" class="pop" />
+                            </svg>
+                        </div>
+                        <div class="card-body">
+                            <h3>Fairy Tale Therapy</h3>
+                            <p>Journey through metaphors to explore your inner world. A safe container for deep
+                                emotional processing.</p>
+                            <div class="card-meta">
+                                <span>2.5 Hours</span>
+                                <span class="meta-price">120 CHF</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="offering-card">
+                        <div class="card-visual">
+                            <svg class="card-svg" viewBox="0 0 100 100">
+                                <rect x="30" y="35" width="30" height="45" rx="3" transform="rotate(-10 30 35)"
+                                    class="pop" stroke="none" />
+                                <rect x="45" y="30" width="30" height="45" rx="3" fill="white" />
+                            </svg>
+                        </div>
+                        <div class="card-body">
+                            <h3>Metaphorical Cards</h3>
+                            <p>Use projective cards as mirrors to your subconscious. Discover hidden patterns and find
+                                new perspectives.</p>
+                            <div class="card-meta">
+                                <span>2 Hours</span>
+                                <span class="meta-price">100 CHF</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="schedule-block">
+                    <div class="section-header" style="margin-bottom: 30px;">
+                        <h3>Upcoming Events</h3>
+                    </div>
+
+                    <div class="event-row">
+                        <div class="event-date">15<span>Feb</span></div>
+                        <div class="event-details">
+                            <h4>Fairy Tale Therapy Workshop</h4>
+                            <p>Saturday, 14:00 - 16:30</p>
+                        </div>
+                        <button class="btn btn-secondary btn-small"
+                            onclick="openModal('Fairy Tale Therapy', 'February 15, 2026')">Reserve</button>
+                    </div>
+
+                    <div class="event-row">
+                        <div class="event-date">01<span>Mar</span></div>
+                        <div class="event-details">
+                            <h4>Women's Resource Circle</h4>
+                            <p>Saturday, 10:00 - 13:00</p>
+                        </div>
+                        <button class="btn btn-secondary btn-small"
+                            onclick="openModal('Womens Resource Circle', 'March 1, 2026')">Reserve</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="about-layout">
+                <div class="lamp-container reveal">
+                    <img src="Gemini_Generated_Image_laf8elaf8elaf8el.png" alt="Therapy Room - Evening"
+                        class="lamp-img dark">
+                    <img src="Gemini_Generated_Image_c933yc933yc933yc.png" alt="Therapy Room - Day"
+                        class="lamp-img light">
+                </div>
+                <div class="reveal">
+                    <h2>My Therapeutic Approach</h2>
+                    <p>I believe that therapy is a collaborative journey. My practice is rooted in <strong>Acceptance
+                            and Commitment Therapy (ACT)</strong> and <strong>Mindfulness</strong>. Together, we work
+                        not just to reduce "symptoms," but to help you move toward a life that feels vital, rich, and
+                        meaningful.</p>
+
+                    <div class="credentials-grid">
+                        <div class="cred-item">
+                            <div class="cred-icon">✓</div>
+                            <div class="cred-text"><strong>PhD in Clinical Psychology</strong><span>University of
+                                    Zurich</span></div>
+                        </div>
+                        <div class="cred-item">
+                            <div class="cred-icon">✓</div>
+                            <div class="cred-text"><strong>FSP Licensed Member</strong><span>Swiss Psychological
+                                    Society</span></div>
+                        </div>
+                        <div class="cred-item">
+                            <div class="cred-icon">✓</div>
+                            <div class="cred-text"><strong>Bilingual Practice</strong><span>English &amp; German</span>
+                            </div>
+                        </div>
+                        <div class="cred-item">
+                            <div class="cred-icon">✓</div>
+                            <div class="cred-text"><strong>12+ Years Experience</strong><span>Hospital &amp; Private
+                                    Practice</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Client Experiences</h2>
+                <p>Supportive feedback from individuals who have found their balance.</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="quote-icon">“</div>
+                    <p class="testimonial-text">Dr. Vance provided a safe, non-judgmental space when I felt completely
+                        overwhelmed by my career transition. Her approach is both compassionate and practical.</p>
+                    <p class="testimonial-author">&mdash; S. Miller</p>
+                </div>
+
+                <div class="testimonial-card reveal">
+                    <div class="quote-icon">“</div>
+                    <p class="testimonial-text">The couples counseling sessions helped us find a way to communicate that
+                        we hadn't been able to achieve on our own in years. Highly recommended.</p>
+                    <p class="testimonial-author">&mdash; A. & J. Rossi</p>
+                </div>
+
+                <div class="testimonial-card reveal">
+                    <div class="quote-icon">“</div>
+                    <p class="testimonial-text">Working through my anxiety with Elena has been a transformative
+                        experience. I finally feel like I have the tools to manage my daily life with confidence.</p>
+                    <p class="testimonial-author">&mdash; Michael B.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section faq-section" id="faq">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about the therapeutic process.</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item reveal">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What should I expect from our first session?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Our initial meeting is a chance for us to get to know each other. We will discuss what
+                                brings
+                                you to therapy now, your history, and what you hope to achieve. It's a safe space to ask
+                                questions and see if we are a good fit for your therapeutic journey.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What is your cancellation and rescheduling policy?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>I understand that life happens. If you need to cancel or reschedule, please provide at
+                                least
+                                24 hours' notice. This allows me to offer the time slot to others. Cancellations made
+                                with
+                                less than 24 hours' notice will be charged at the full session rate.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How much do sessions cost and is it covered by insurance?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Individual sessions are 180 CHF (50 minutes). As a licensed FSP psychologist, my services
+                                are
+                                covered by most Swiss supplementary insurance (Zusatzversicherung). I recommend checking
+                                with your provider specifically regarding "Psychologische Psychotherapie" coverage.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How many sessions will I need?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>The duration of therapy varies greatly depending on your individual goals and the
+                                complexity
+                                of the issues we're addressing. Some clients find clarity in 6-10 sessions, while others
+                                benefit from long-term support. We will regularly review our progress together.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Are my sessions confidential?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>Absolutely. Confidentiality is a cornerstone of psychological practice and is protected
+                                by
+                                Swiss law. Information is only shared with your explicit written consent, except in rare
+                                circumstances where there is a serious risk of harm to yourself or others.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section test-section" id="self-check">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Quick Stress Self-Check</h2>
+                <p>Take a moment to pause and reflect.</p>
+            </div>
+
+            <div class="test-container reveal">
+                <div class="test-intro" id="test-intro">
+                    <div class="intro-visual">
+                        <svg class="card-svg" viewBox="0 0 100 100" style="width:100%; height:100%;">
+                            <circle cx="50" cy="50" r="30" fill="var(--accent-soft)" opacity="0.8" />
+                            <path d="M30,60 Q50,80 70,60" stroke="var(--primary)" fill="none" stroke-width="1.5" />
+                            <circle cx="50" cy="45" r="12" stroke="var(--primary)" fill="none" stroke-width="1.5" />
+                            <circle cx="50" cy="45" r="5" class="pop" />
+                            <path d="M50,33 V20" stroke="var(--primary)" stroke-width="1.5" />
+                        </svg>
+                    </div>
+                    <h3 style="font-family: var(--font-serif);">Time for a gentle pause?</h3>
+                    <p>Gain clarity on your current stress levels with this 2-minute, private assessment.</p>
+                    <button class="btn btn-primary" onclick="startTest()">Begin Self-Check</button>
+                </div>
+
+                <div class="test-progress" id="test-progress" style="display: none;">
+                    <div class="step" data-step="1"></div>
+                    <div class="step" data-step="2"></div>
+                    <div class="step" data-step="3"></div>
+                    <div class="step" data-step="4"></div>
+                    <div class="step" data-step="5"></div>
+                </div>
+
+                <div id="test-questions">
+                    <div class="test-question" data-question="1">
+                        <h4>1. How often do you feel overwhelmed?</h4>
+                        <div class="test-options">
+                            <div class="test-option" onclick="selectOption(0)">Rarely</div>
+                            <div class="test-option" onclick="selectOption(1)">Sometimes</div>
+                            <div class="test-option" onclick="selectOption(2)">Often</div>
+                            <div class="test-option" onclick="selectOption(3)">Daily</div>
+                        </div>
+                    </div>
+                    <div class="test-question" data-question="2">
+                        <h4>2. How is your sleep quality?</h4>
+                        <div class="test-options">
+                            <div class="test-option" onclick="selectOption(0)">Good</div>
+                            <div class="test-option" onclick="selectOption(1)">Okay</div>
+                            <div class="test-option" onclick="selectOption(2)">Restless</div>
+                            <div class="test-option" onclick="selectOption(3)">Insomnia</div>
+                        </div>
+                    </div>
+                    <div class="test-question" data-question="3">
+                        <h4>3. Do you experience physical tension?</h4>
+                        <div class="test-options">
+                            <div class="test-option" onclick="selectOption(0)">No</div>
+                            <div class="test-option" onclick="selectOption(1)">Rarely</div>
+                            <div class="test-option" onclick="selectOption(2)">Frequently</div>
+                            <div class="test-option" onclick="selectOption(3)">Constant pain</div>
+                        </div>
+                    </div>
+                    <div class="test-question" data-question="4">
+                        <h4>4. Can you focus on tasks?</h4>
+                        <div class="test-options">
+                            <div class="test-option" onclick="selectOption(0)">Yes, easily</div>
+                            <div class="test-option" onclick="selectOption(1)">Mostly</div>
+                            <div class="test-option" onclick="selectOption(2)">I struggle</div>
+                            <div class="test-option" onclick="selectOption(3)">Brain fog</div>
+                        </div>
+                    </div>
+                    <div class="test-question" data-question="5">
+                        <h4>5. Do you find time for yourself?</h4>
+                        <div class="test-options">
+                            <div class="test-option" onclick="selectOption(0)">Regularly</div>
+                            <div class="test-option" onclick="selectOption(1)">Sometimes</div>
+                            <div class="test-option" onclick="selectOption(2)">Rarely</div>
+                            <div class="test-option" onclick="selectOption(3)">Never</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="test-result" id="test-result">
+                    <div class="result-score" id="result-score"></div>
+                    <div class="result-level" id="result-level"></div>
+                    <p id="result-desc" style="margin: 20px auto; max-width: 500px; color: var(--text-muted);"></p>
+                    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                        <a href="#contact" class="btn btn-primary">Book Consultation</a>
+                        <button class="btn btn-secondary" onclick="resetTest()">Retake</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="contact-layout">
+                <div class="contact-info">
+                    <h2>Reach out today</h2>
+                    <p>Taking the first step is often the bravest part of the journey. I’m here to support you whenever
+                        you’re ready.</p>
+
+                    <div style="margin-top: 40px;">
+                        <a href="mailto:practice@dr-vance.ch" class="contact-link">
+                            <div class="contact-icon-box">✉️</div>
+                            <span>practice@dr-vance.ch</span>
+                        </a>
+                        <a href="tel:+41442010000" class="contact-link">
+                            <div class="contact-icon-box">📞</div>
+                            <span>+41 44 201 00 00</span>
+                        </a>
+                        <div class="contact-link">
+                            <div class="contact-icon-box">📍</div>
+                            <span>Seefeldstrasse 122, Zurich</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-meta">
+                        <div class="meta-item">
+                            <h4>Availability</h4>
+                            <p>Monday — Friday<br>09:00 — 18:00</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>Confidentiality</h4>
+                            <p>Your privacy is strictly protected under Swiss professional secrecy laws and GDPR
+                                regulations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form id="contactForm" onsubmit="handleForm(event)">
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" required placeholder="Full Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" required placeholder="email@address.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" required placeholder="+41 ...">
+                        </div>
+                        <div class="form-group">
+                            <label>How can I help you?</label>
+                            <select required>
+                                <option value="" disabled selected>Select a Service</option>
+                                <option value="individual">Individual Therapy</option>
+                                <option value="couples">Couples Counseling</option>
+                                <option value="group">Group Workshop</option>
+                                <option value="question">General Inquiry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea rows="4" placeholder="Briefly describe what's on your mind..."></textarea>
+                        </div>
+                        <div class="form-group"
+                            style="display: flex; gap: 12px; align-items: flex-start; margin-bottom: 32px;">
+                            <input type="checkbox" required style="width: 20px; height: 20px; margin-top: 2px;">
+                            <label style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted);">
+                                I consent to the processing of my data for the purpose of this inquiry. I understand
+                                that my information is handled confidentially.
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; height: 56px;">Send
+                            Message</button>
+                        <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: 16px;">
+                            I typically respond within 24 business hours.
+                        </p>
+                    </form>
+
+                    <div id="success-msg" style="display: none; text-align: center; padding: 40px 0;">
+                        <h2 style="color: var(--primary);">Thank you.</h2>
+                        <p>I have received your message and will get back to you within 24 business hours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="crisis-section">
+        <div class="container">
+            <div class="disclaimer-text">
+                <span class="disclaimer-title">Note on Emergency Support</span>
+                This practice is not equipped to handle acute psychiatric emergencies or immediate crisis intervention.
+                If you are in a life-threatening situation, please connect with one of the specialized services below.
+            </div>
+
+            <div class="crisis-grid">
+                <div class="crisis-card">
+                    <h4>Ambulance</h4>
+                    <p>144</p>
+                </div>
+                <div class="crisis-card">
+                    <h4>Police</h4>
+                    <p>117</p>
+                </div>
+                <div class="crisis-card">
+                    <h4>Crisis Line</h4>
+                    <p>143</p>
+                </div>
+                <div class="crisis-card">
+                    <h4>Youth Support</h4>
+                    <p>147</p>
+                </div>
+                <div class="crisis-card">
+                    <h4>SOS Doctors</h4>
+                    <p>044 360 44 44</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container"
+            style="text-align:center; padding-top:40px; border-top:1px solid var(--border); color: var(--text-muted);">
+            <p><strong>Dr. Elena Vance</strong> • Seefeldstrasse 122, 8008 Zurich • +41 44 201 00 00</p>
+            <p style="font-size: 0.85rem; margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Disclaimer: The information provided on this website is for educational purposes only and does not
+                constitute psychological advice or a professional relationship.
+            </p>
+            <p style="font-size: 0.85rem; margin-top: 16px;">&copy; 2026 Professional Clinical Psychologist</p>
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <h3 style="text-align: center;">Reserve Your Spot</h3>
+            <p id="modalDetails"
+                style="text-align: center; background:var(--accent-soft); padding:12px; border-radius:8px; margin-bottom:20px; color: var(--primary); font-weight: 500;">
+            </p>
+            <form
+                onsubmit="event.preventDefault(); closeModal(); alert('Reservation confirmed! You will receive an email shortly.');">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" required placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required placeholder="Your Email">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" required placeholder="+41...">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%">Confirm Reservation</button>
+            </form>
         </div>
     </div>
-</section>
 
-<section class="section" id="services">
-    <div class="container">
-        <h2 class="reveal">Healing in different forms</h2>
+    <script>
+        // --- Tab Logic ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(tabId + '-panel').classList.add('active');
+        }
 
-        <div class="services-grid">
-            <!-- Individual -->
-            <div class="service-card reveal">
-                <!-- Embedded SVG (no external host) -->
-                <img
-                    class="service-img"
-                    alt="Individual Therapy"
-                    loading="lazy"
-                    decoding="async"
-                    src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%201200%20800%27%3E%3Cdefs%3E%3CradialGradient%20id%3D%27g%27%20cx%3D%2730%25%27%20cy%3D%2725%25%27%20r%3D%2780%25%27%3E%3Cstop%20offset%3D%270%25%27%20stop-color%3D%27%23ffffff%27%20stop-opacity%3D%271%27/%3E%3Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%23f7ede4%27%20stop-opacity%3D%271%27/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect%20width%3D%271200%27%20height%3D%27800%27%20fill%3D%27url(%23g)%27/%3E%3Cpath%20d%3D%27M90%20670%20C220%20560%20330%20540%20460%20585%20C590%20630%20690%20725%20840%20700%20C990%20675%201060%20580%201120%20535%20L1120%20800%20L90%20800%20Z%27%20fill%3D%27%23efe1d6%27/%3E%3Ccircle%20cx%3D%27335%27%20cy%3D%27320%27%20r%3D%2776%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27/%3E%3Cpath%20d%3D%27M250%20590%20C255%20490%20300%20435%20335%20435%20C370%20435%20415%20490%20420%20590%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M515%20310%20C575%20230%20710%20205%20788%20272%20C860%20334%20835%20460%20740%20486%20C652%20510%20556%20440%20540%20362%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23966b4d%27%20stroke-width%3D%2710%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M610%20370%20L660%20420%20L765%20305%27%20fill%3D%27none%27%20stroke%3D%27%23966b4d%27%20stroke-width%3D%2712%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27/%3E%3Ccircle%20cx%3D%27945%27%20cy%3D%27210%27%20r%3D%276%27%20fill%3D%27%23966b4d%27%20opacity%3D%270.55%27/%3E%3Ccircle%20cx%3D%27980%27%20cy%3D%27245%27%20r%3D%2710%27%20fill%3D%27%23966b4d%27%20opacity%3D%270.35%27/%3E%3Ccircle%20cx%3D%271020%27%20cy%3D%27205%27%20r%3D%278%27%20fill%3D%27%23966b4d%27%20opacity%3D%270.25%27/%3E%3C/svg%3E"
-                />
-                <div class="service-info">
-                    <h3>Individual Support</h3>
-                    <p>One-on-one sessions focused on anxiety, depression, burnout, and life transitions in a warm, non-judgmental environment.</p>
-                    <div class="service-price">
-                        <span>50 Minutes</span>
-                        <span>180 CHF</span>
-                    </div>
-                </div>
-            </div>
+        // --- Scroll Reveal ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-            <!-- Couples -->
-            <div class="service-card reveal" style="transition-delay: 0.1s;">
-                <img
-                    class="service-img"
-                    alt="Couples Therapy"
-                    loading="lazy"
-                    decoding="async"
-                    src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%201200%20800%27%3E%3Cdefs%3E%3CradialGradient%20id%3D%27g%27%20cx%3D%2760%25%27%20cy%3D%2720%25%27%20r%3D%2785%25%27%3E%3Cstop%20offset%3D%270%25%27%20stop-color%3D%27%23ffffff%27/%3E%3Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%23f7ede4%27/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect%20width%3D%271200%27%20height%3D%27800%27%20fill%3D%27url(%23g)%27/%3E%3Cpath%20d%3D%27M60%20670%20C220%20595%20345%20560%20490%20590%20C645%20622%20780%20725%20945%20695%20C1085%20670%201135%20570%201170%20515%20L1170%20800%20L60%20800%20Z%27%20fill%3D%27%23efe1d6%27/%3E%3Ccircle%20cx%3D%27440%27%20cy%3D%27310%27%20r%3D%2768%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27/%3E%3Ccircle%20cx%3D%27680%27%20cy%3D%27310%27%20r%3D%2768%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27/%3E%3Cpath%20d%3D%27M355%20590%20C360%20490%20405%20438%20440%20438%20C475%20438%20520%20490%20525%20590%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M595%20590%20C600%20490%20645%20438%20680%20438%20C715%20438%20760%20490%20765%20590%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M560%20390%20C590%20345%20610%20330%20630%20330%20C650%20330%20670%20345%20700%20390%20C730%20435%20695%20495%20630%20518%20C565%20495%20530%20435%20560%20390%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23966b4d%27%20stroke-width%3D%2710%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M500%20430%20C540%20490%20585%20525%20630%20525%20C675%20525%20720%20490%20760%20430%27%20fill%3D%27none%27%20stroke%3D%27%23966b4d%27%20stroke-width%3D%2710%27%20stroke-linecap%3D%27round%27/%3E%3Ccircle%20cx%3D%27980%27%20cy%3D%27210%27%20r%3D%279%27%20fill%3D%27%23966b4d%27%20opacity%3D%270.25%27/%3E%3Ccircle%20cx%3D%271020%27%20cy%3D%27245%27%20r%3D%276%27%20fill%3D%27%23966b4d%27%20opacity%3D%270.45%27/%3E%3C/svg%3E"
-                />
-                <div class="service-info">
-                    <h3>Couple Consultations</h3>
-                    <p>Facilitated dialogue to help partners rebuild trust, improve communication, and navigate relationship milestones together.</p>
-                    <div class="service-price">
-                        <span>80 Minutes</span>
-                        <span>250 CHF</span>
-                    </div>
-                </div>
-            </div>
+        // --- Modal Logic ---
+        function openModal(title, date) {
+            document.getElementById('modalDetails').innerText = `${title} on ${date}`;
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
-            <!-- Group -->
-            <div class="service-card reveal" style="transition-delay: 0.2s;">
-                <img
-                    class="service-img"
-                    alt="Group Workshop"
-                    loading="lazy"
-                    decoding="async"
-                    src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%201200%20800%27%3E%3Cdefs%3E%3CradialGradient%20id%3D%27g%27%20cx%3D%2750%25%27%20cy%3D%2720%25%27%20r%3D%2790%25%27%3E%3Cstop%20offset%3D%270%25%27%20stop-color%3D%27%23ffffff%27/%3E%3Cstop%20offset%3D%27100%25%27%20stop-color%3D%27%23f7ede4%27/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect%20width%3D%271200%27%20height%3D%27800%27%20fill%3D%27url(%23g)%27/%3E%3Cpath%20d%3D%27M70%20680%20C240%20585%20370%20550%20510%20585%20C650%20620%20760%20720%20920%20705%20C1065%20690%201120%20595%201150%20550%20L1150%20800%20L70%20800%20Z%27%20fill%3D%27%23efe1d6%27/%3E%3Ccircle%20cx%3D%27340%27%20cy%3D%27325%27%20r%3D%2760%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27/%3E%3Ccircle%20cx%3D%27600%27%20cy%3D%27285%27%20r%3D%2768%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27/%3E%3Ccircle%20cx%3D%27860%27%20cy%3D%27325%27%20r%3D%2760%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27/%3E%3Cpath%20d%3D%27M260%20590%20C265%20505%20305%20465%20340%20465%20C375%20465%20415%20505%20420%20590%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M510%20590%20C520%20480%20565%20430%20600%20430%20C635%20430%20680%20480%20690%20590%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M780%20590%20C785%20505%20825%20465%20860%20465%20C895%20465%20935%20505%20940%20590%27%20fill%3D%27%23ffffff%27%20stroke%3D%27%23ede4dc%27%20stroke-width%3D%278%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M455%20365%20C515%20310%20560%20295%20600%20295%20C640%20295%20685%20310%20745%20365%27%20fill%3D%27none%27%20stroke%3D%27%23966b4d%27%20stroke-width%3D%2710%27%20stroke-linecap%3D%27round%27/%3E%3Cpath%20d%3D%27M430%20435%20C510%20495%20555%20515%20600%20515%20C645%20515%20690%20495%20770%20435%27%20fill%3D%27none%27%20stroke%3D%27%23966b4d%27%20stroke-width%3D%2710%27%20stroke-linecap%3D%27round%27/%3E%3Ccircle%20cx%3D%27990%27%20cy%3D%27225%27%20r%3D%278%27%20fill%3D%27%23966b4d%27%20opacity%3D%270.35%27/%3E%3Ccircle%20cx%3D%271025%27%20cy%3D%27205%27%20r%3D%276%27%20fill%3D%27%23966b4d%27%20opacity%3D%270.55%27/%3E%3C/svg%3E"
-                />
-                <div class="service-info">
-                    <h3>Group Workshops</h3>
-                    <p>Shared therapeutic spaces for social anxiety, grief processing, or mindfulness-based stress reduction techniques.</p>
-                    <div class="service-price">
-                        <span>90 Minutes</span>
-                        <span>80 CHF</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+        // --- FAQ Toggle ---
+        function toggleFAQ(element) {
+            const item = element.parentElement;
+            const isOpen = item.classList.contains('opened');
 
-<section class="section about" id="about">
-    <div class="container">
-        <div class="about-layout">
-            <img
-                src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&q=80&w=800"
-                alt="Therapy Room"
-                class="about-image reveal"
-                loading="lazy"
-                decoding="async"
-                referrerpolicy="no-referrer"
-            />
-            <div class="about-content reveal">
-                <h2>My Therapeutic Approach</h2>
-                <p>
-                    I believe that therapy is a collaborative journey. My practice is rooted in
-                    <strong>Acceptance and Commitment Therapy (ACT)</strong> and <strong>Mindfulness</strong>.
-                    Together, we work not just to reduce "symptoms," but to help you move toward a life that feels vital, rich, and meaningful.
-                </p>
-                <p>
-                    Whether you are facing a specific crisis or a general sense of feeling "stuck," I provide a grounded, compassionate presence
-                    to help you navigate your inner world.
-                </p>
+            // Close all other items
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('opened'));
 
-                <div class="credentials-grid">
-                    <div class="cred-item">
-                        <span class="cred-icon">✓</span>
-                        <div class="cred-text"><strong>PhD in Clinical Psychology</strong><span>University of Zurich</span></div>
-                    </div>
-                    <div class="cred-item">
-                        <span class="cred-icon">✓</span>
-                        <div class="cred-text"><strong>FSP Licensed Member</strong><span>Swiss Psychological Society</span></div>
-                    </div>
-                    <div class="cred-item">
-                        <span class="cred-icon">✓</span>
-                        <div class="cred-text"><strong>Bilingual Practice</strong><span>English &amp; German</span></div>
-                    </div>
-                    <div class="cred-item">
-                        <span class="cred-icon">✓</span>
-                        <div class="cred-text"><strong>12+ Years Experience</strong><span>Hospital &amp; Private Practice</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section">
-    <div class="container">
-        <h2 class="reveal">Frequently asked questions</h2>
-        <div class="faq-list reveal">
-            <details>
-                <summary>What happens in the first session?</summary>
-                <div class="faq-content">
-                    Our first meeting is an "intake" session. It’s a low-pressure space for us to get to know each other,
-                    discuss your history, and see if my approach feels like the right fit for your needs.
-                </div>
-            </details>
-            <details>
-                <summary>Are online sessions as effective as in-person?</summary>
-                <div class="faq-content">
-                    Research suggests that for most conditions, tele-therapy is just as effective as in-person sessions.
-                    I use a secure, medical-grade video platform to ensure your total privacy.
-                </div>
-            </details>
-            <details>
-                <summary>Is therapy covered by my insurance?</summary>
-                <div class="faq-content">
-                    Most Swiss supplemental insurance (Zusatzversicherung) plans cover a significant portion of psychological counseling.
-                    I recommend checking your policy for "Psychotherapy by non-medical psychologists."
-                </div>
-            </details>
-        </div>
-    </div>
-</section>
-
-<section class="section" id="contact">
-    <div class="container">
-        <div class="contact-layout">
-            <div class="contact-card reveal">
-                <h2>Reach out today</h2>
-                <p>It takes courage to take the first step. I am here to listen whenever you are ready.</p>
-                <div style="margin-top: 40px;">
-                    <a href="mailto:practice@dr-vance.ch" class="contact-link">📧 practice@dr-vance.ch</a>
-                    <a href="tel:+41442010000" class="contact-link">📞 +41 44 201 00 00</a>
-                    <p style="margin-top: 32px; font-size: 0.9rem; opacity: 0.8;">
-                        Location:<br />
-                        Seefeldstrasse 122, 8008 Zurich<br />
-                        (Near Feldeggstrasse tram stop)
-                    </p>
-                </div>
-            </div>
-
-            <div class="contact-form reveal">
-                <form id="contactForm" onsubmit="handleForm(event)">
-                    <div class="form-group">
-                        <label>Your Name</label>
-                        <input type="text" required placeholder="Full Name" />
-                    </div>
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" required placeholder="email@address.com" />
-                    </div>
-                    <div class="form-group">
-                        <label>How can I help you?</label>
-                        <select required>
-                            <option value="individual">Individual Therapy</option>
-                            <option value="couples">Couples Counseling</option>
-                            <option value="group">Group Workshop</option>
-                            <option value="question">General Inquiry</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Your Message (Optional)</label>
-                        <textarea rows="4" placeholder="Briefly describe what's on your mind..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Inquiry</button>
-                </form>
-
-                <div id="success-msg">
-                    <h2 style="text-align: center; color: var(--accent);">Thank you.</h2>
-                    <p>I have received your message and will get back to you within 24 business hours.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<footer>
-    <div class="container">
-        <div class="crisis-disclaimer">
-            <strong>Important:</strong> If you are in a mental health emergency or experiencing suicidal thoughts,
-            please call 144 (Switzerland) or the 24/7 Crisis Line at 143 immediately. This contact form is for non-urgent appointments only.
-        </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
-            <p>&copy; 2024 Dr. Elena Vance • Professional Clinical Psychologist</p>
-            <div style="display: flex; gap: 20px;">
-                <a href="#" style="color: var(--muted); text-decoration: none;">Privacy Policy</a>
-                <a href="#" style="color: var(--muted); text-decoration: none;">Impressum</a>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<script>
-    // Scroll Reveal Logic
-    const observerOptions = { threshold: 0.15 };
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
+            // Toggle current item
+            if (!isOpen) {
+                item.classList.add('opened');
             }
-        });
-    }, observerOptions);
+        }
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        // --- Form Validation ---
+        function handleForm(e) {
+            e.preventDefault();
+            const form = e.target;
+            let isValid = true;
 
-    // Form Handling
-    function handleForm(e) {
-        e.preventDefault();
-        document.getElementById('contactForm').style.display = 'none';
-        document.getElementById('success-msg').style.display = 'block';
-    }
+            form.querySelectorAll('input[required], select[required]').forEach(field => {
+                if (!field.value.trim() || (field.type === 'email' && !field.value.includes('@'))) {
+                    field.classList.add('invalid');
+                    isValid = false;
+                } else {
+                    field.classList.remove('invalid');
+                }
+            });
 
-    // Close other FAQs
-    document.querySelectorAll('details').forEach((el) => {
-        el.addEventListener('toggle', () => {
-            if (el.open) {
-                document.querySelectorAll('details').forEach((other) => {
-                    if (other !== el) other.removeAttribute('open');
-                });
+            if (isValid) {
+                form.style.display = 'none';
+                document.getElementById('success-msg').style.display = 'block';
             }
-        });
-    });
-</script>
+        }
 
+        document.querySelectorAll('input, select, textarea').forEach(field => {
+            field.addEventListener('input', () => field.classList.remove('invalid'));
+        });
+
+        // --- Stress Test Logic ---
+        let currentQ = 1;
+        let answers = [];
+        const totalQ = 5;
+
+        function startTest() {
+            document.getElementById('test-intro').style.display = 'none';
+            document.getElementById('test-progress').style.display = 'flex';
+            currentQ = 1;
+            answers = [];
+            showQuestion(1);
+            updateProgress();
+        }
+
+        function showQuestion(num) {
+            document.querySelectorAll('.test-question').forEach(q => q.classList.remove('active'));
+            const q = document.querySelector(`.test-question[data-question="${num}"]`);
+            if (q) q.classList.add('active');
+        }
+
+        function updateProgress() {
+            document.querySelectorAll('.step').forEach((step, idx) => {
+                step.classList.remove('active', 'completed');
+                if (idx + 1 < currentQ) step.classList.add('completed');
+                else if (idx + 1 === currentQ) step.classList.add('active');
+            });
+        }
+
+        function selectOption(val) {
+            answers.push(val);
+            if (currentQ < totalQ) {
+                currentQ++;
+                showQuestion(currentQ);
+                updateProgress();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.querySelectorAll('.test-question').forEach(q => q.classList.remove('active'));
+            document.getElementById('test-progress').style.display = 'none';
+
+            const sum = answers.reduce((a, b) => a + b, 0);
+            const percent = Math.round((sum / (totalQ * 3)) * 100);
+
+            let level, desc;
+            if (sum <= 5) {
+                level = "Low Stress";
+                desc = "You seem to be managing well. Keep up your healthy routines.";
+            } else if (sum <= 10) {
+                level = "Moderate Stress";
+                desc = "You are experiencing some pressure. Breathing exercises and mindfulness might help reset your balance.";
+            } else {
+                level = "High Stress";
+                desc = "Your stress levels are elevated. It might be a good time to speak with a professional to find coping strategies.";
+            }
+
+            document.getElementById('result-score').innerText = percent + "%";
+            document.getElementById('result-level').innerText = level;
+            document.getElementById('result-desc').innerText = desc;
+            document.getElementById('test-result').style.display = 'block';
+        }
+
+        function resetTest() {
+            answers = [];
+            currentQ = 1;
+            document.getElementById('test-result').style.display = 'none';
+            document.getElementById('test-intro').style.display = 'block';
+        }
+    </script>
 </body>
+
 </html>
